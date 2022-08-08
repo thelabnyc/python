@@ -1,6 +1,7 @@
 variables:
   PLATFORMS: "linux/arm64/v8,linux/amd64"
   DOCKER_BUILDKIT: "1"
+  BASE_IMAGE: python
 
 build:
   image: docker:latest
@@ -28,13 +29,19 @@ build:
         --build-arg NODE_VERSION=$NODE_VERSION
         --cache-from "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}"
         --tag "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}"
-        --file $DOCKERFILE .
+        --target $TARGET_STAGE
+        --file Dockerfile .
         --push
 
   parallel:
     matrix:
-      - BASE_IMAGE: python
+      - TARGET_STAGE: python
+        PYTHON_VERSION: "3.10-bullseye"
+        NODE_VERSION: "18"
+        OUTPUT_TAG_NAME: "py310"
+
+      - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.10-bullseye"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-node18"
-        DOCKERFILE: "Dockerfile"
+
