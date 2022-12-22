@@ -46,6 +46,11 @@ build:
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-buster"
 
+      - TARGET_STAGE: python
+        PYTHON_VERSION: "3.11-buster"
+        NODE_VERSION: "18"
+        OUTPUT_TAG_NAME: "py311-buster"
+
       # Buster + Python + Node
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.9-buster"
@@ -56,6 +61,11 @@ build:
         PYTHON_VERSION: "3.10-buster"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-node18-buster"
+
+      - TARGET_STAGE: python-node
+        PYTHON_VERSION: "3.11-buster"
+        NODE_VERSION: "18"
+        OUTPUT_TAG_NAME: "py311-node18-buster"
 
       # Bullseye + Python
       - TARGET_STAGE: python
@@ -68,6 +78,11 @@ build:
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310"
 
+      - TARGET_STAGE: python
+        PYTHON_VERSION: "3.11-bullseye"
+        NODE_VERSION: "18"
+        OUTPUT_TAG_NAME: "py311"
+
       # Bullseye + Python + Node
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.9-bullseye"
@@ -78,3 +93,8 @@ build:
         PYTHON_VERSION: "3.10-bullseye"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-node18"
+
+      - TARGET_STAGE: python-node
+        PYTHON_VERSION: "3.11-bullseye"
+        NODE_VERSION: "18"
+        OUTPUT_TAG_NAME: "py311-node18"

@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=python
-ARG PYTHON_VERSION=3.10
+ARG PYTHON_VERSION=3.11
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} as python
 
 # Install Poetry for dependency management
