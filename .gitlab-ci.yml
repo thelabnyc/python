@@ -42,7 +42,7 @@ build:
         OUTPUT_TAG_NAME: "py39-buster"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.10-buster"
+        PYTHON_VERSION: "3.10.9-buster"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-buster"
 
@@ -58,7 +58,7 @@ build:
         OUTPUT_TAG_NAME: "py39-node18-buster"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.10-buster"
+        PYTHON_VERSION: "3.10.9-buster"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-node18-buster"
 
@@ -74,7 +74,7 @@ build:
         OUTPUT_TAG_NAME: "py39"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.10-bullseye"
+        PYTHON_VERSION: "3.10.9-bullseye"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310"
 
@@ -90,7 +90,7 @@ build:
         OUTPUT_TAG_NAME: "py39-node18"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.10-bullseye"
+        PYTHON_VERSION: "3.10.9-bullseye"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-node18"
 
