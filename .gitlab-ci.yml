@@ -35,50 +35,50 @@ build:
 
   parallel:
     matrix:
-      # Bullseye + Python
+      # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.9-bullseye"
+        PYTHON_VERSION: "3.9"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py39"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.10.9-bullseye"
+        PYTHON_VERSION: "3.10.9"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.11-bullseye"
+        PYTHON_VERSION: "3.11"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py311"
 
-      # Bullseye + Python + Node 18
+      # Python + Node 18
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.9-bullseye"
+        PYTHON_VERSION: "3.9"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py39-node18"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.10.9-bullseye"
+        PYTHON_VERSION: "3.10.9"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py310-node18"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11-bullseye"
+        PYTHON_VERSION: "3.11"
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py311-node18"
 
-      # Bullseye + Python + Node 20
+      # Python + Node 20
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.9-bullseye"
+        PYTHON_VERSION: "3.9"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py39-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.10.9-bullseye"
+        PYTHON_VERSION: "3.10.9"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py310-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11-bullseye"
+        PYTHON_VERSION: "3.11"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py311-node20"
