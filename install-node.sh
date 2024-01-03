@@ -15,8 +15,7 @@ echo "deb [signed-by=${NODE_KEYRING}] https://deb.nodesource.com/node_${NODE_VER
 apt-get update
 apt-get install -y \
     build-essential \
-    nodejs \
-    npm
+    nodejs
 
 # Cleanup
 rm -rf /var/lib/apt/lists/*
