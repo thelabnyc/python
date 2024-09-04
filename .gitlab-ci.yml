@@ -57,27 +57,6 @@ build:
         NODE_VERSION: "18"
         OUTPUT_TAG_NAME: "py312"
 
-      # Python + Node 18
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.9"
-        NODE_VERSION: "18"
-        OUTPUT_TAG_NAME: "py39-node18"
-
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.10.9"
-        NODE_VERSION: "18"
-        OUTPUT_TAG_NAME: "py310-node18"
-
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11"
-        NODE_VERSION: "18"
-        OUTPUT_TAG_NAME: "py311-node18"
-
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.12"
-        NODE_VERSION: "18"
-        OUTPUT_TAG_NAME: "py312-node18"
-
       # Python + Node 20
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.9"
