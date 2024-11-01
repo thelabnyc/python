@@ -38,36 +38,21 @@ build:
     matrix:
       # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.9"
-        NODE_VERSION: "18"
-        OUTPUT_TAG_NAME: "py39"
-
-      - TARGET_STAGE: python
-        PYTHON_VERSION: "3.10.9"
-        NODE_VERSION: "18"
-        OUTPUT_TAG_NAME: "py310"
-
-      - TARGET_STAGE: python
         PYTHON_VERSION: "3.11"
-        NODE_VERSION: "18"
+        NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py311"
 
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.12"
-        NODE_VERSION: "18"
+        NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py312"
 
+      - TARGET_STAGE: python
+        PYTHON_VERSION: "3.13"
+        NODE_VERSION: "20"
+        OUTPUT_TAG_NAME: "py313"
+
       # Python + Node 20
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.9"
-        NODE_VERSION: "20"
-        OUTPUT_TAG_NAME: "py39-node20"
-
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.10.9"
-        NODE_VERSION: "20"
-        OUTPUT_TAG_NAME: "py310-node20"
-
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.11"
         NODE_VERSION: "20"
@@ -77,3 +62,8 @@ build:
         PYTHON_VERSION: "3.12"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py312-node20"
+
+      - TARGET_STAGE: python-node
+        PYTHON_VERSION: "3.13"
+        NODE_VERSION: "20"
+        OUTPUT_TAG_NAME: "py313-node20"
