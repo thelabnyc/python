@@ -39,17 +39,14 @@ build:
       # Python
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.11"
-        NODE_VERSION: ""
         OUTPUT_TAG_NAME: "py311"
 
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.12"
-        NODE_VERSION: ""
         OUTPUT_TAG_NAME: "py312"
 
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.13"
-        NODE_VERSION: ""
         OUTPUT_TAG_NAME: "py313"
 
       # Python + Node 20
