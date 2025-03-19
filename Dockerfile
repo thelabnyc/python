@@ -9,6 +9,9 @@ ENV PATH="/root/.local/bin:${PATH}"
 RUN poetry config virtualenvs.create false && \
     poetry self add poetry-plugin-export
 
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:0.6.8 /uv /uvx /bin/
+
 FROM python AS python-node
 
 # Install NodeJS and Yarn
