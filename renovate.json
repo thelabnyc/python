@@ -22,11 +22,11 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["Dockerfile$"],
-      "matchStrings": ["ARG NODE_VERSION=\"(?<currentValue>.+)\""],
-      "datasourceTemplate": "node-version",
-      "packageNameTemplate": "node",
-      "versioningTemplate": "node"
+      "fileMatch": ["\\.gitlab-ci\\.yml$"],
+      "matchStrings": ["PYTHON_VERSION: \"(?<currentValue>.+)\""],
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "python",
+      "versioningTemplate": "docker"
     }
   ],
   "packageRules": [
