@@ -26,7 +26,8 @@
       "matchStrings": ["PYTHON_VERSION: \"(?<currentValue>.+)\""],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "python",
-      "versioningTemplate": "docker"
+      "versioningTemplate": "docker",
+      "extractVersionTemplate": "^(?<version>\\d+\\.\\d+)"
     },
     {
       "customType": "regex",
