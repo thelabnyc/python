@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=python
-ARG PYTHON_VERSION=3.13
+ARG PYTHON_VERSION="3.13"
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # Install Poetry for dependency management
@@ -15,7 +15,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.6.17@sha256:4a6c9444b126bd325fba904bff796bf91
 FROM python AS python-node
 
 # Install NodeJS and Yarn
-ARG NODE_VERSION=22
+ARG NODE_VERSION="22"
 ENV NODE_VERSION="${NODE_VERSION}"
 COPY install-node.sh /opt/install-node.sh
 RUN /opt/install-node.sh
