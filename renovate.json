@@ -22,7 +22,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [".gitlab-ci.yml$"],
+      "fileMatch": ["\\.gitlab-ci\\.yml$"],
       "matchStrings": ["PYTHON_VERSION: \"(?<currentValue>.+)\""],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "python",
