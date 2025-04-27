@@ -36,5 +36,12 @@
       "packageNameTemplate": "node",
       "versioningTemplate": "node"
     }
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major", "minor"],
+      "matchPackageNames": ["python"],
+      "enabled": false
+    }
   ]
 }
