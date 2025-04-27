@@ -15,7 +15,7 @@
     {
       "customType": "regex",
       "fileMatch": ["Dockerfile$"],
-      "matchStrings": ["ARG PYTHON_VERSION=(?<currentValue>.+)"],
+      "matchStrings": ["ARG PYTHON_VERSION=(?<currentValue>.+)\\n"],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "python",
       "versioningTemplate": "docker"
