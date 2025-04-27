@@ -11,6 +11,14 @@
       "datasourceTemplate": "pypi",
       "packageNameTemplate": "poetry",
       "versioningTemplate": "pep440"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["\\.gitlab-ci\\.yml$"],
+      "matchStrings": ["PYTHON_VERSION: \"(?<currentValue>.+)\""],
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "python",
+      "versioningTemplate": "docker"
     }
   ],
   "packageRules": [
