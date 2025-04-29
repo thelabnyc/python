@@ -47,7 +47,7 @@ build:
     matrix:
       # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.11@sha256:a3e280261e448b95d49423532ccd6e5329c39d171c10df1457891ff7c5e2301b"
+        PYTHON_VERSION: "3.11@sha256:7229b30b76070a0c9a372b27dab742fb56a0e190f3aae3a4380157b40a7360d8"
         OUTPUT_TAG_NAME: "py311"
 
       - TARGET_STAGE: python
@@ -60,7 +60,7 @@ build:
 
       # Python + Node 20
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11@sha256:a3e280261e448b95d49423532ccd6e5329c39d171c10df1457891ff7c5e2301b"
+        PYTHON_VERSION: "3.11@sha256:7229b30b76070a0c9a372b27dab742fb56a0e190f3aae3a4380157b40a7360d8"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py311-node20"
 
