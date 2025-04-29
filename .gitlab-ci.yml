@@ -47,35 +47,35 @@ build:
     matrix:
       # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.11@sha256:7229b30b76070a0c9a372b27dab742fb56a0e190f3aae3a4380157b40a7360d8"
+        PYTHON_VERSION: "3.11@sha256:c7ebc5e0eb2164a295e5009bddb9c8796f52fdad4fcf2477db88b5b0d96c6372"
         OUTPUT_TAG_NAME: "py311"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.12@sha256:67a652d4832f1ccdd735ab69b611105858a12844b4dc9b51fdc64e9c2f5214f7"
+        PYTHON_VERSION: "3.12@sha256:ba98c70c9d81d34e7714c237d59f3cc38e111fe6356d3aa22a8d9b3513cde242"
         OUTPUT_TAG_NAME: "py312"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.13@sha256:fdbba75f9d66e120e35bf89a384027518fdcf79902b751473cd80bc0d59adfda"
+        PYTHON_VERSION: "3.13@sha256:c33390eacee652aecb774f9606c263b4f76415bc83926a6777ede0f853c6bc19"
         OUTPUT_TAG_NAME: "py313"
 
       # Python + Node 20
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11@sha256:7229b30b76070a0c9a372b27dab742fb56a0e190f3aae3a4380157b40a7360d8"
+        PYTHON_VERSION: "3.11@sha256:c7ebc5e0eb2164a295e5009bddb9c8796f52fdad4fcf2477db88b5b0d96c6372"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py311-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.12@sha256:67a652d4832f1ccdd735ab69b611105858a12844b4dc9b51fdc64e9c2f5214f7"
+        PYTHON_VERSION: "3.12@sha256:ba98c70c9d81d34e7714c237d59f3cc38e111fe6356d3aa22a8d9b3513cde242"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py312-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:fdbba75f9d66e120e35bf89a384027518fdcf79902b751473cd80bc0d59adfda"
+        PYTHON_VERSION: "3.13@sha256:c33390eacee652aecb774f9606c263b4f76415bc83926a6777ede0f853c6bc19"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py313-node20"
 
       # Python + Node 22
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:fdbba75f9d66e120e35bf89a384027518fdcf79902b751473cd80bc0d59adfda"
+        PYTHON_VERSION: "3.13@sha256:c33390eacee652aecb774f9606c263b4f76415bc83926a6777ede0f853c6bc19"
         NODE_VERSION: "22"
         OUTPUT_TAG_NAME: "py313-node22"
