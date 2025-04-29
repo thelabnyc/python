@@ -55,7 +55,7 @@ build:
         OUTPUT_TAG_NAME: "py312"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.13@sha256:34dc8eb488136014caf530ec03a3a2403473a92d67a01a26256c365b5b2fc0d4"
+        PYTHON_VERSION: "3.13@sha256:fdbba75f9d66e120e35bf89a384027518fdcf79902b751473cd80bc0d59adfda"
         OUTPUT_TAG_NAME: "py313"
 
       # Python + Node 20
@@ -70,12 +70,12 @@ build:
         OUTPUT_TAG_NAME: "py312-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:34dc8eb488136014caf530ec03a3a2403473a92d67a01a26256c365b5b2fc0d4"
+        PYTHON_VERSION: "3.13@sha256:fdbba75f9d66e120e35bf89a384027518fdcf79902b751473cd80bc0d59adfda"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "py313-node20"
 
       # Python + Node 22
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:34dc8eb488136014caf530ec03a3a2403473a92d67a01a26256c365b5b2fc0d4"
+        PYTHON_VERSION: "3.13@sha256:fdbba75f9d66e120e35bf89a384027518fdcf79902b751473cd80bc0d59adfda"
         NODE_VERSION: "22"
         OUTPUT_TAG_NAME: "py313-node22"
