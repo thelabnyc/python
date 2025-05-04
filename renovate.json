@@ -1,29 +1,45 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["gitlab>thelabnyc/renovate-config:application"],
+  "extends": [
+    "gitlab>thelabnyc/renovate-config:application"
+  ],
   "assignees": [],
-  "reviewers": ["crgwbr"],
+  "reviewers": [
+    "crgwbr"
+  ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["Dockerfile$"],
-      "matchStrings": ["POETRY_VERSION=\"(?<currentValue>.+)\""],
+      "managerFilePatterns": [
+        "/Dockerfile$/"
+      ],
+      "matchStrings": [
+        "POETRY_VERSION=\"(?<currentValue>.+)\""
+      ],
       "datasourceTemplate": "pypi",
       "packageNameTemplate": "poetry",
       "versioningTemplate": "pep440"
     },
     {
       "customType": "regex",
-      "fileMatch": ["Dockerfile$"],
-      "matchStrings": ["ARG PYTHON_VERSION=\"(?<currentValue>[^\\s@]+)(@(?<currentDigest>sha256:[0-9a-f]+))?\""],
+      "managerFilePatterns": [
+        "/Dockerfile$/"
+      ],
+      "matchStrings": [
+        "ARG PYTHON_VERSION=\"(?<currentValue>[^\\s@]+)(@(?<currentDigest>sha256:[0-9a-f]+))?\""
+      ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "python",
       "versioningTemplate": "docker"
     },
     {
       "customType": "regex",
-      "fileMatch": ["\\.gitlab-ci\\.yml$"],
-      "matchStrings": ["PYTHON_VERSION: \"(?<currentValue>[^\\s@]+)(@(?<currentDigest>sha256:[0-9a-f]+))?\""],
+      "managerFilePatterns": [
+        "/\\.gitlab-ci\\.yml$/"
+      ],
+      "matchStrings": [
+        "PYTHON_VERSION: \"(?<currentValue>[^\\s@]+)(@(?<currentDigest>sha256:[0-9a-f]+))?\""
+      ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "python",
       "versioningTemplate": "docker"
@@ -31,8 +47,13 @@
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["major", "minor"],
-      "matchPackageNames": ["python"],
+      "matchUpdateTypes": [
+        "major",
+        "minor"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
       "enabled": false
     }
   ]
