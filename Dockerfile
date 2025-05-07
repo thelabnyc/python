@@ -3,7 +3,7 @@ ARG PYTHON_VERSION="3.13@sha256:884da97271696864c2eca77c6362b1c501196d6377115c81
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # Install Poetry for dependency management
-ENV POETRY_VERSION="2.1.2"
+ENV POETRY_VERSION="2.1.3"
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH="/root/.local/bin:${PATH}"
 RUN poetry config virtualenvs.create false && \
