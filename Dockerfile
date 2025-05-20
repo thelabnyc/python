@@ -10,7 +10,7 @@ RUN poetry config virtualenvs.create false && \
     poetry self add poetry-plugin-export
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.7.5@sha256:69e13c7ae3a7649cbe0c912ca8afe00656966622a13f2db2d7eef7bb01118ccf /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.7.6@sha256:c467e9b5da1e763ee5841f9ae51020d11569ca08991a05367ceca6eda0be9b16 /uv /uvx /bin/
 
 FROM python AS python-node
 
