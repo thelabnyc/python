@@ -47,35 +47,35 @@ build:
     matrix:
       # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.11@sha256:4e0b4f7d6124f7ff41cdc1b82bedaa07722c55fbb78038c7587b5f7c0b892c1a"
+        PYTHON_VERSION: "3.11@sha256:c948886fb9bff4ebfaf13e051a8abcbe3ce940e539442c574bdcb02e77c49184"
         OUTPUT_TAG_NAME: "3.11.${CI_PIPELINE_IID}"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.12@sha256:45d13f5cba9b0f9bdfaed658d3e4fcfb1694ce49a6d70ec07c9f3980a7dc8b26"
+        PYTHON_VERSION: "3.12@sha256:e71e72dacc3335df6051bf976b3e6d11da33bbb46660a467bd0f3a275ed51f47"
         OUTPUT_TAG_NAME: "3.12.${CI_PIPELINE_IID}"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.13@sha256:0bc836167214f98aca9c9bca7b4c6dc2c2a77f4a29d5029e6561a14706335102"
+        PYTHON_VERSION: "3.13@sha256:eb120d016adcbc8bac194e15826bbb4f1d1569d298d8817bb5049ed5e59f41d9"
         OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
 
       # Python + Node 20
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11@sha256:4e0b4f7d6124f7ff41cdc1b82bedaa07722c55fbb78038c7587b5f7c0b892c1a"
+        PYTHON_VERSION: "3.11@sha256:c948886fb9bff4ebfaf13e051a8abcbe3ce940e539442c574bdcb02e77c49184"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "3.11.${CI_PIPELINE_IID}-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.12@sha256:45d13f5cba9b0f9bdfaed658d3e4fcfb1694ce49a6d70ec07c9f3980a7dc8b26"
+        PYTHON_VERSION: "3.12@sha256:e71e72dacc3335df6051bf976b3e6d11da33bbb46660a467bd0f3a275ed51f47"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "3.12.${CI_PIPELINE_IID}-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:0bc836167214f98aca9c9bca7b4c6dc2c2a77f4a29d5029e6561a14706335102"
+        PYTHON_VERSION: "3.13@sha256:eb120d016adcbc8bac194e15826bbb4f1d1569d298d8817bb5049ed5e59f41d9"
         NODE_VERSION: "20"
         OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node20"
 
       # Python + Node 22
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:0bc836167214f98aca9c9bca7b4c6dc2c2a77f4a29d5029e6561a14706335102"
+        PYTHON_VERSION: "3.13@sha256:eb120d016adcbc8bac194e15826bbb4f1d1569d298d8817bb5049ed5e59f41d9"
         NODE_VERSION: "22"
         OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
