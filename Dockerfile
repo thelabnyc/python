@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=python
-ARG PYTHON_VERSION="3.13@sha256:bdc6c1e5773e8f4f2e8ec47b2fb666daec8bed64f78edd96d4f2c6a91865b14f"
+ARG PYTHON_VERSION="3.13@sha256:30bd46f8647a438f95956c58a9e47ae8ef553680dfa54a02b1a9a7823a9e05a9"
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # Install Poetry for dependency management
