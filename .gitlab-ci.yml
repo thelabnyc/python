@@ -37,8 +37,9 @@ build:
       --build-arg BASE_IMAGE=$BASE_IMAGE
       --build-arg PYTHON_VERSION=$PYTHON_VERSION
       --build-arg NODE_VERSION=$NODE_VERSION
-      --cache-from "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}${TAG_SUFFIX}"
-      --tag "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}${TAG_SUFFIX}"
+      --cache-from "${CI_REGISTRY_IMAGE}:${MUTABLE_TAG_NAME}${TAG_SUFFIX}"
+      --tag "${CI_REGISTRY_IMAGE}:${MUTABLE_TAG_NAME}${TAG_SUFFIX}"
+      --tag "${CI_REGISTRY_IMAGE}:${IMMUTABLE_TAG_NAME}${TAG_SUFFIX}"
       --target $TARGET_STAGE
       --file Dockerfile .
       --push
@@ -48,40 +49,48 @@ build:
       # Python
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.11@sha256:9153baea63f0b65f8cc4f5b2d064162326e25892a8a89bc543e0475c90471211"
-        OUTPUT_TAG_NAME: "3.11.${CI_PIPELINE_IID}"
+        MUTABLE_TAG_NAME: "3.11"
+        IMMUTABLE_TAG_NAME: "3.11.${CI_PIPELINE_IID}"
 
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.12@sha256:1cb6108b64a4caf2a862499bf90dc65703a08101e8bfb346a18c9d12c0ed5b7e"
-        OUTPUT_TAG_NAME: "3.12.${CI_PIPELINE_IID}"
+        MUTABLE_TAG_NAME: "3.12"
+        IMMUTABLE_TAG_NAME: "3.12.${CI_PIPELINE_IID}"
 
       - TARGET_STAGE: python
         PYTHON_VERSION: "3.13@sha256:2deb0891ec3f643b1d342f04cc22154e6b6a76b41044791b537093fae00b6884"
-        OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
+        MUTABLE_TAG_NAME: "3.13"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
 
       # Python + Node 20
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.11@sha256:9153baea63f0b65f8cc4f5b2d064162326e25892a8a89bc543e0475c90471211"
         NODE_VERSION: "20"
-        OUTPUT_TAG_NAME: "3.11.${CI_PIPELINE_IID}-node20"
+        MUTABLE_TAG_NAME: "3.11-node20"
+        IMMUTABLE_TAG_NAME: "3.11.${CI_PIPELINE_IID}-node20"
 
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.12@sha256:1cb6108b64a4caf2a862499bf90dc65703a08101e8bfb346a18c9d12c0ed5b7e"
         NODE_VERSION: "20"
-        OUTPUT_TAG_NAME: "3.12.${CI_PIPELINE_IID}-node20"
+        MUTABLE_TAG_NAME: "3.12-node20"
+        IMMUTABLE_TAG_NAME: "3.12.${CI_PIPELINE_IID}-node20"
 
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.13@sha256:2deb0891ec3f643b1d342f04cc22154e6b6a76b41044791b537093fae00b6884"
         NODE_VERSION: "20"
-        OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node20"
+        MUTABLE_TAG_NAME: "3.13-node20"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node20"
 
       # Python + Node 22
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.13@sha256:2deb0891ec3f643b1d342f04cc22154e6b6a76b41044791b537093fae00b6884"
         NODE_VERSION: "22"
-        OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
+        MUTABLE_TAG_NAME: "3.13-node22"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
 
       # Python + Node 24
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.13@sha256:2deb0891ec3f643b1d342f04cc22154e6b6a76b41044791b537093fae00b6884"
         NODE_VERSION: "24"
-        OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
+        MUTABLE_TAG_NAME: "3.13-node24"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
