@@ -15,7 +15,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.8.17@sha256:e4644cb5bd56fdc2c5ea3ee0525d9d21e
 FROM python AS python-node
 
 # Install NodeJS and Yarn
-ARG NODE_VERSION="22"
+ARG NODE_VERSION="24"
 ENV NODE_VERSION="${NODE_VERSION}"
 COPY install-node.sh /opt/install-node.sh
 RUN /opt/install-node.sh

@@ -27,21 +27,21 @@ build:
 
     # Create a buildx instance if one doesn't already exist
     - if [ "$(docker buildx ls | grep docker-container  | wc -l)" -le "0" ]; then
-        docker context create buildx-build;
-        docker buildx create --use buildx-build;
+      docker context create buildx-build;
+      docker buildx create --use buildx-build;
       fi
 
     - docker buildx build
-        --platform "$PLATFORMS"
-        --pull
-        --build-arg BASE_IMAGE=$BASE_IMAGE
-        --build-arg PYTHON_VERSION=$PYTHON_VERSION
-        --build-arg NODE_VERSION=$NODE_VERSION
-        --cache-from "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}${TAG_SUFFIX}"
-        --tag "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}${TAG_SUFFIX}"
-        --target $TARGET_STAGE
-        --file Dockerfile .
-        --push
+      --platform "$PLATFORMS"
+      --pull
+      --build-arg BASE_IMAGE=$BASE_IMAGE
+      --build-arg PYTHON_VERSION=$PYTHON_VERSION
+      --build-arg NODE_VERSION=$NODE_VERSION
+      --cache-from "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}${TAG_SUFFIX}"
+      --tag "${CI_REGISTRY_IMAGE}:${OUTPUT_TAG_NAME}${TAG_SUFFIX}"
+      --target $TARGET_STAGE
+      --file Dockerfile .
+      --push
 
   parallel:
     matrix:
@@ -79,3 +79,9 @@ build:
         PYTHON_VERSION: "3.13@sha256:2deb0891ec3f643b1d342f04cc22154e6b6a76b41044791b537093fae00b6884"
         NODE_VERSION: "22"
         OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
+
+      # Python + Node 24
+      - TARGET_STAGE: python-node
+        PYTHON_VERSION: "3.13@sha256:2deb0891ec3f643b1d342f04cc22154e6b6a76b41044791b537093fae00b6884"
+        NODE_VERSION: "24"
+        OUTPUT_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
