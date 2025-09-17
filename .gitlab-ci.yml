@@ -48,11 +48,6 @@ build:
     matrix:
       # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.11@sha256:9153baea63f0b65f8cc4f5b2d064162326e25892a8a89bc543e0475c90471211"
-        MUTABLE_TAG_NAME: "3.11"
-        IMMUTABLE_TAG_NAME: "3.11.${CI_PIPELINE_IID}"
-
-      - TARGET_STAGE: python
         PYTHON_VERSION: "3.12@sha256:1cb6108b64a4caf2a862499bf90dc65703a08101e8bfb346a18c9d12c0ed5b7e"
         MUTABLE_TAG_NAME: "3.12"
         IMMUTABLE_TAG_NAME: "3.12.${CI_PIPELINE_IID}"
@@ -63,12 +58,6 @@ build:
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
 
       # Python + Node 20
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.11@sha256:9153baea63f0b65f8cc4f5b2d064162326e25892a8a89bc543e0475c90471211"
-        NODE_VERSION: "20"
-        MUTABLE_TAG_NAME: "3.11-node20"
-        IMMUTABLE_TAG_NAME: "3.11.${CI_PIPELINE_IID}-node20"
-
       - TARGET_STAGE: python-node
         PYTHON_VERSION: "3.12@sha256:1cb6108b64a4caf2a862499bf90dc65703a08101e8bfb346a18c9d12c0ed5b7e"
         NODE_VERSION: "20"
