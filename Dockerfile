@@ -3,7 +3,7 @@ ARG PYTHON_VERSION="3.13@sha256:12513c633252a28bcfee85839aa384e1af322f11275779c6
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.9.5@sha256:f459f6f73a8c4ef5d69f4e6fbbdb8af751d6fa40ec34b39a1ab469acd6e289b7 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.9.6@sha256:4b96ee9429583983fd172c33a02ecac5242d63fb46bc27804748e38c1cc9ad0d /uv /uvx /bin/
 
 FROM python AS python-node
 
