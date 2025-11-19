@@ -49,38 +49,38 @@ build:
     matrix:
       # Python
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.12@sha256:16c9bb95ecb701d31fb55e27c79c2d7aae0b88448850c929ecf1b0f901063ab5"
+        PYTHON_VERSION: "3.12@sha256:2b075cba87fcf51f14e6be18f83f209fb2013d72362ec874aed7d01933253e8b"
         MUTABLE_TAG_NAME: "3.12"
         IMMUTABLE_TAG_NAME: "3.12.${CI_PIPELINE_IID}"
 
       - TARGET_STAGE: python
-        PYTHON_VERSION: "3.13@sha256:11be3a19d4b9e7b946c2f78126e07fa43732682f5cebbfeb36c0da5c207f91d9"
+        PYTHON_VERSION: "3.13@sha256:960d76d578ab63e55620ebea4918b9b9fc8a4ef4c817cf2dd44aa65aa121bbe0"
         MUTABLE_TAG_NAME: "3.13"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
 
       # Python + Node 20
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.12@sha256:16c9bb95ecb701d31fb55e27c79c2d7aae0b88448850c929ecf1b0f901063ab5"
+        PYTHON_VERSION: "3.12@sha256:2b075cba87fcf51f14e6be18f83f209fb2013d72362ec874aed7d01933253e8b"
         NODE_VERSION: "20"
         MUTABLE_TAG_NAME: "3.12-node20"
         IMMUTABLE_TAG_NAME: "3.12.${CI_PIPELINE_IID}-node20"
 
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:11be3a19d4b9e7b946c2f78126e07fa43732682f5cebbfeb36c0da5c207f91d9"
+        PYTHON_VERSION: "3.13@sha256:960d76d578ab63e55620ebea4918b9b9fc8a4ef4c817cf2dd44aa65aa121bbe0"
         NODE_VERSION: "20"
         MUTABLE_TAG_NAME: "3.13-node20"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node20"
 
       # Python + Node 22
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:11be3a19d4b9e7b946c2f78126e07fa43732682f5cebbfeb36c0da5c207f91d9"
+        PYTHON_VERSION: "3.13@sha256:960d76d578ab63e55620ebea4918b9b9fc8a4ef4c817cf2dd44aa65aa121bbe0"
         NODE_VERSION: "22"
         MUTABLE_TAG_NAME: "3.13-node22"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
 
       # Python + Node 24
       - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:11be3a19d4b9e7b946c2f78126e07fa43732682f5cebbfeb36c0da5c207f91d9"
+        PYTHON_VERSION: "3.13@sha256:960d76d578ab63e55620ebea4918b9b9fc8a4ef4c817cf2dd44aa65aa121bbe0"
         NODE_VERSION: "24"
         MUTABLE_TAG_NAME: "3.13-node24"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
