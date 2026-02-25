@@ -1,79 +1,138 @@
 variables:
-  PLATFORMS: "linux/arm64/v8,linux/amd64"
-  DOCKER_BUILDKIT: "1"
   BASE_IMAGE: python
   FF_NETWORK_PER_BUILD: "true"
 
-build:
-  image: docker:latest@sha256:8bcbad4b45f0bff9d3e809d85a7ac589390f0be8acbc526850c998c35c1243fd
-  services:
-    - docker:dind@sha256:8bcbad4b45f0bff9d3e809d85a7ac589390f0be8acbc526850c998c35c1243fd
+.versions:
+  py313: &py313
+    PYTHON_VERSION: "3.13@sha256:df41f147212eb80a175a996bd9c1dc1217c97fe051d1ccc09ccd70f1ad1409e1"
+  py314: &py314
+    PYTHON_VERSION: "3.14@sha256:fcc0c1a76e796346e62e1140581f00f206ffe9fe8ac7c270dcbfb37deb590be4"
 
+stages:
+  - build
+  - manifest
+
+.base_job: &base_job
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       variables:
         TAG_SUFFIX: "-mr${CI_MERGE_REQUEST_IID}"
-    # No suffux for default branch
+    # No suffix for default branch
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"
       variables:
         TAG_SUFFIX: ""
 
+build_docker_image:
+  <<: *base_job
+  stage: build
+  image: docker:latest@sha256:8bcbad4b45f0bff9d3e809d85a7ac589390f0be8acbc526850c998c35c1243fd
+  tags:
+    - $RUNNER_TAG
   script:
-    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
-    - docker pull "${BASE_IMAGE}:${PYTHON_VERSION}" || true
-
-    # Install QEMU emulation support in the kernel
-    # See: https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images
-    - docker run --privileged --rm tonistiigi/binfmt --install all
-
-    # Create a buildx instance if one doesn't already exist
-    - if [ "$(docker buildx ls | grep docker-container  | wc -l)" -le "0" ]; then
-      docker context create buildx-build;
-      docker buildx create --use buildx-build;
+    - apk add bash
+    - if [ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]; then
+      docker login -u "${CI_REGISTRY_USER}" -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}";
       fi
-
-    - docker buildx build
-      --platform "$PLATFORMS"
-      --pull
-      --build-arg BASE_IMAGE=$BASE_IMAGE
-      --build-arg PYTHON_VERSION=$PYTHON_VERSION
-      --build-arg NODE_VERSION=$NODE_VERSION
-      --cache-from "${CI_REGISTRY_IMAGE}:${MUTABLE_TAG_NAME}${TAG_SUFFIX}"
-      --tag "${CI_REGISTRY_IMAGE}:${MUTABLE_TAG_NAME}${TAG_SUFFIX}"
-      --tag "${CI_REGISTRY_IMAGE}:${IMMUTABLE_TAG_NAME}${TAG_SUFFIX}"
-      --target $TARGET_STAGE
-      --file Dockerfile .
-      --push
-
+    - ./bin/build.sh
   parallel:
     matrix:
-      # Python
-      - TARGET_STAGE: python
-        PYTHON_VERSION: "3.13@sha256:df41f147212eb80a175a996bd9c1dc1217c97fe051d1ccc09ccd70f1ad1409e1"
+      # Python 3.13
+      - <<: *py313
+        TARGET_STAGE: python
         MUTABLE_TAG_NAME: "3.13"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py313
+        TARGET_STAGE: python
+        MUTABLE_TAG_NAME: "3.13"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
 
-      - TARGET_STAGE: python
-        PYTHON_VERSION: "3.14@sha256:fcc0c1a76e796346e62e1140581f00f206ffe9fe8ac7c270dcbfb37deb590be4"
+      # Python 3.14
+      - <<: *py314
+        TARGET_STAGE: python
         MUTABLE_TAG_NAME: "3.14"
         IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py314
+        TARGET_STAGE: python
+        MUTABLE_TAG_NAME: "3.14"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
 
-      # Python + Node 22
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:df41f147212eb80a175a996bd9c1dc1217c97fe051d1ccc09ccd70f1ad1409e1"
+      # Python 3.13 + Node 22
+      - <<: *py313
+        TARGET_STAGE: python-node
         NODE_VERSION: "22"
         MUTABLE_TAG_NAME: "3.13-node22"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py313
+        TARGET_STAGE: python-node
+        NODE_VERSION: "22"
+        MUTABLE_TAG_NAME: "3.13-node22"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
 
-      # Python + Node 24
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.13@sha256:df41f147212eb80a175a996bd9c1dc1217c97fe051d1ccc09ccd70f1ad1409e1"
+      # Python 3.13 + Node 24
+      - <<: *py313
+        TARGET_STAGE: python-node
         NODE_VERSION: "24"
         MUTABLE_TAG_NAME: "3.13-node24"
         IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py313
+        TARGET_STAGE: python-node
+        NODE_VERSION: "24"
+        MUTABLE_TAG_NAME: "3.13-node24"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
 
-      - TARGET_STAGE: python-node
-        PYTHON_VERSION: "3.14@sha256:fcc0c1a76e796346e62e1140581f00f206ffe9fe8ac7c270dcbfb37deb590be4"
+      # Python 3.14 + Node 24
+      - <<: *py314
+        TARGET_STAGE: python-node
         NODE_VERSION: "24"
         MUTABLE_TAG_NAME: "3.14-node24"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node24"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py314
+        TARGET_STAGE: python-node
+        NODE_VERSION: "24"
+        MUTABLE_TAG_NAME: "3.14-node24"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node24"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
+
+manifest:
+  stage: manifest
+  needs: [build_docker_image]
+  tags:
+    - thelab-arm64
+  image: docker:latest@sha256:8bcbad4b45f0bff9d3e809d85a7ac589390f0be8acbc526850c998c35c1243fd
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"
+  script:
+    - apk add bash
+    - docker login -u "${CI_REGISTRY_USER}" -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
+    - ./bin/push-manifest.sh
+  parallel:
+    matrix:
+      - MUTABLE_TAG_NAME: "3.13"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
+      - MUTABLE_TAG_NAME: "3.14"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}"
+      - MUTABLE_TAG_NAME: "3.13-node22"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
+      - MUTABLE_TAG_NAME: "3.13-node24"
+        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
+      - MUTABLE_TAG_NAME: "3.14-node24"
         IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node24"
