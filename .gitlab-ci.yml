@@ -4,9 +4,9 @@ variables:
 
 .versions:
   py313: &py313
-    PYTHON_VERSION: "3.13@sha256:b27930dd7bbfac7a3410e09b3cfee17a9bc1239d7417e89e9996a0a6877be4ea"
+    PYTHON_VERSION: "3.13@sha256:f3c3ff2b5f0984abb65c1c0c17020c8117eae1a8c445e832810eb94f4abc87cd"
   py314: &py314
-    PYTHON_VERSION: "3.14@sha256:2ca6cda25055227533141435ab8ec0dd3afd9165d78d8bf0f58c8d959d57b9fc"
+    PYTHON_VERSION: "3.14@sha256:fe6ffb340c566fe7459832667da8b545896edb30c3dce0c3b1218ab4d377ba7d"
 
 stages:
   - build
