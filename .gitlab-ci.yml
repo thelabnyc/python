@@ -6,7 +6,7 @@ variables:
   py313: &py313
     PYTHON_VERSION: "3.13@sha256:36f5673ec01bd1001d7cbb8f12215101aa4ee5d70ddbbb72e01b2930d7c12f19"
   py314: &py314
-    PYTHON_VERSION: "3.14@sha256:6f933224dd3ac885246a5a5994cb40268822bd1ba78f177c99bbda527e183a27"
+    PYTHON_VERSION: "3.14@sha256:3a9d2dd3f18e5c7a9d8de7b3659418a4ab848ccd409fb9e91ef9d7a6a3520ba7"
 
 stages:
   - build
