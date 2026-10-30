@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=python
-ARG PYTHON_VERSION="3.13@sha256:debad600e8d6e754012528dc796488acc52438fea3d28596b87262df9b91c71e"
+ARG PYTHON_VERSION="3.14@sha256:b0aed0e0059e9b1527ef57689a7206f32526627b0713e2228a916df62880188a"
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # Pick up Debian security fixes released since the pinned base image was built
