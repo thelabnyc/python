@@ -8,10 +8,10 @@ variables:
   FF_NETWORK_PER_BUILD: "true"
 
 .versions:
-  py313: &py313
-    PYTHON_VERSION: "3.13@sha256:debad600e8d6e754012528dc796488acc52438fea3d28596b87262df9b91c71e"
   py314: &py314
     PYTHON_VERSION: "3.14@sha256:b0aed0e0059e9b1527ef57689a7206f32526627b0713e2228a916df62880188a"
+  py315: &py315
+    PYTHON_VERSION: "3.15@sha256:f17ec845ebdd4f3347431579e1c22eaeec82913f039f2a54b937c7ff870bacdb"
 
 stages:
   - build
@@ -41,20 +41,6 @@ build_docker_image:
     - ./bin/build.sh
   parallel:
     matrix:
-      # Python 3.13
-      - <<: *py313
-        TARGET_STAGE: python
-        MUTABLE_TAG_NAME: "3.13"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
-        ARCH: amd64
-        RUNNER_TAG: thelab-amd64
-      - <<: *py313
-        TARGET_STAGE: python
-        MUTABLE_TAG_NAME: "3.13"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
-        ARCH: arm64
-        RUNNER_TAG: thelab-arm64
-
       # Python 3.14
       - <<: *py314
         TARGET_STAGE: python
@@ -69,35 +55,17 @@ build_docker_image:
         ARCH: arm64
         RUNNER_TAG: thelab-arm64
 
-      # Python 3.13 + Node 22
-      - <<: *py313
-        TARGET_STAGE: python-node
-        NODE_VERSION: "22"
-        MUTABLE_TAG_NAME: "3.13-node22"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
+      # Python 3.15
+      - <<: *py315
+        TARGET_STAGE: python
+        MUTABLE_TAG_NAME: "3.15"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}"
         ARCH: amd64
         RUNNER_TAG: thelab-amd64
-      - <<: *py313
-        TARGET_STAGE: python-node
-        NODE_VERSION: "22"
-        MUTABLE_TAG_NAME: "3.13-node22"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
-        ARCH: arm64
-        RUNNER_TAG: thelab-arm64
-
-      # Python 3.13 + Node 24
-      - <<: *py313
-        TARGET_STAGE: python-node
-        NODE_VERSION: "24"
-        MUTABLE_TAG_NAME: "3.13-node24"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
-        ARCH: amd64
-        RUNNER_TAG: thelab-amd64
-      - <<: *py313
-        TARGET_STAGE: python-node
-        NODE_VERSION: "24"
-        MUTABLE_TAG_NAME: "3.13-node24"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
+      - <<: *py315
+        TARGET_STAGE: python
+        MUTABLE_TAG_NAME: "3.15"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}"
         ARCH: arm64
         RUNNER_TAG: thelab-arm64
 
@@ -117,6 +85,54 @@ build_docker_image:
         ARCH: arm64
         RUNNER_TAG: thelab-arm64
 
+      # Python 3.14 + Node 26
+      - <<: *py314
+        TARGET_STAGE: python-node
+        NODE_VERSION: "26"
+        MUTABLE_TAG_NAME: "3.14-node26"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node26"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py314
+        TARGET_STAGE: python-node
+        NODE_VERSION: "26"
+        MUTABLE_TAG_NAME: "3.14-node26"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node26"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
+
+      # Python 3.15 + Node 24
+      - <<: *py315
+        TARGET_STAGE: python-node
+        NODE_VERSION: "24"
+        MUTABLE_TAG_NAME: "3.15-node24"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}-node24"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py315
+        TARGET_STAGE: python-node
+        NODE_VERSION: "24"
+        MUTABLE_TAG_NAME: "3.15-node24"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}-node24"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
+
+      # Python 3.15 + Node 26
+      - <<: *py315
+        TARGET_STAGE: python-node
+        NODE_VERSION: "26"
+        MUTABLE_TAG_NAME: "3.15-node26"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}-node26"
+        ARCH: amd64
+        RUNNER_TAG: thelab-amd64
+      - <<: *py315
+        TARGET_STAGE: python-node
+        NODE_VERSION: "26"
+        MUTABLE_TAG_NAME: "3.15-node26"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}-node26"
+        ARCH: arm64
+        RUNNER_TAG: thelab-arm64
+
 manifest:
   stage: manifest
   needs: [build_docker_image]
@@ -131,13 +147,15 @@ manifest:
     - ./bin/push-manifest.sh
   parallel:
     matrix:
-      - MUTABLE_TAG_NAME: "3.13"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}"
       - MUTABLE_TAG_NAME: "3.14"
         IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}"
-      - MUTABLE_TAG_NAME: "3.13-node22"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node22"
-      - MUTABLE_TAG_NAME: "3.13-node24"
-        IMMUTABLE_TAG_NAME: "3.13.${CI_PIPELINE_IID}-node24"
+      - MUTABLE_TAG_NAME: "3.15"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}"
       - MUTABLE_TAG_NAME: "3.14-node24"
         IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node24"
+      - MUTABLE_TAG_NAME: "3.14-node26"
+        IMMUTABLE_TAG_NAME: "3.14.${CI_PIPELINE_IID}-node26"
+      - MUTABLE_TAG_NAME: "3.15-node24"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}-node24"
+      - MUTABLE_TAG_NAME: "3.15-node26"
+        IMMUTABLE_TAG_NAME: "3.15.${CI_PIPELINE_IID}-node26"
