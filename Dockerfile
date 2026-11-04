@@ -3,7 +3,8 @@ ARG PYTHON_VERSION="3.14@sha256:22caa054c0d309b1eee6f448326a8821a674a75b98653247
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # So a swapped package needs a TLS break, not just an apt signature-check bug
-RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources
+RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources \
+    && ! grep -rqsiE '^[^#]*http://' /etc/apt/sources.list /etc/apt/sources.list.d/
 
 # Pick up Debian security fixes released since the pinned base image was built
 RUN apt-get update \
