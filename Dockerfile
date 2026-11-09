@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=python
-ARG PYTHON_VERSION="3.14@sha256:22caa054c0d309b1eee6f448326a8821a674a75b98653247fe706db90491fc87"
+ARG PYTHON_VERSION="3.14@sha256:d18055009f327b22993de14458aa5a6bac032cdf459ea2a2e9bbdc3d3d49e4fb"
 FROM ${BASE_IMAGE}:${PYTHON_VERSION} AS python
 
 # So a swapped package needs a TLS break, not just an apt signature-check bug
